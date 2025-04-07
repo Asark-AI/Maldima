@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart Attendance - Admin Panel</title>
+
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Firebase SDKs (use compat version) -->
+  <script type="module" src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script type="module" src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script type="module" src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  <script type="module" src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+  
+  <!-- Custom JS files -->
+  <script type="module" src="js/firebaseConfig.js"></script>
+  <script type="module" src="js/auth.js"></script>
+  <script type="module" src="js/adminPanel.js"></script>
+  <script type="module" src="js/otpSystem.js"></script>
+  <script type="module" src="js/registration.js"></script>
+  <script type="module" src="js/attendanceLogger.js"></script>
+  <script type="module" src="js/emailService.js"></script>
+  <script type="module" src="js/login.js"></script>
+
+  <h2>📘 Smart Attendance - Admin Panel</h2>
+
+  <!-- Admin Login -->
+  <div class="card" id="loginSection">
+    <input type="email" id="adminEmail" placeholder="Admin Email" />
+    <input type="password" id="adminPass" placeholder="Password" />
+    <button onclick="loginAdmin()">Login</button>
+    <p id="loginStatus"></p>
+  </div>
+
+  <!-- Admin Controls -->
+  <div id="adminSection" style="display:none;" class="card">
+
+    <!-- Class Mode -->
+    <h3>🧭 Select Class Mode</h3>
+    <button onclick="setClassMode('online')">Online</button>
+    <button onclick="setClassMode('face_to_face')">Face-to-Face</button>
+    <p id="modeStatus"></p>
+
+    <!-- OTP -->
+    <h3>📩 Send OTP to Students (Online Class)</h3>
+    <button onclick="sendOtpToStudents()">Send OTP</button>
+    <p id="otpStatus"></p>
+
+    <!-- Register Student -->
+    <h3>👨‍🎓 Register Student</h3>
+    <input type="text" id="studentName" placeholder="Student Name" />
+    <input type="email" id="studentEmail" placeholder="Student Email" />
+    <button onclick="triggerScan('rfid')">Scan RFID</button>
+    <button onclick="triggerScan('fingerprint')">Scan Fingerprint</button>
+    <button onclick="saveStudent()">Save Student</button>
+    <p id="registrationStatus"></p>
+
+    <!-- Live Attendance -->
+    <h3>✅ Face-to-Face Attendance</h3>
+    <p>Students can now mark attendance using RFID or Fingerprint.</p>
+    <ul id="attendanceList"></ul>
+    <p id="attendanceStatus"></p>
+
+    <!-- Download CSV -->
+    <h3>📥 Download Attendance Data</h3>
+    <button onclick="downloadAttendanceCSV()">Download CSV</button>
+    <p id="csvStatus"></p>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "rules": {
+    ".read": "auth != null", // Allow read access only to authenticated users
+    ".write": "auth != null", // Allow write access only to authenticated users
+    "settings": {
+      "class_mode": {
+        ".read": "auth != null", // Allow authenticated users to read class mode
+        ".write": "auth != null" // Allow authenticated users to update class mode
+      }
+    },
+    "scan_results": {
+      "current": {
+        ".read": "auth != null", // Allow authenticated users to read scan results
+        ".write": "auth != null" // Allow authenticated users to write scan results
+      }
+    },
+    "attendance": {
+      ".read": "auth != null", // Allow authenticated users to read attendance
+      ".write": "auth != null" // Allow authenticated users to write attendance
+    },
+    "admin": {
+      ".read": "auth != null && auth.token.admin == true",
+      ".write": "auth != null && auth.token.admin == true"
+    }
+  }
+}

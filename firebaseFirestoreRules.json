@@ -1,0 +1,23 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /students/{studentId} {
+      allow read, write: if request.auth != null; // Allow authenticated users to read/write student data
+    }
+    match /settings/class_mode {
+      allow read, write: if request.auth != null; // Allow authenticated users to read/write class mode
+    }
+    match /scan_results/current {
+      allow read, write: if request.auth != null; // Allow authenticated users to read/write scan results
+    }
+    match /attendance/{attendanceId} {
+      allow read, write: if request.auth != null; // Allow authenticated users to read/write attendance
+    }
+    match /otps/{otpId} {
+      allow read, write: if request.auth != null; // Allow authenticated users to read/write OTPs
+    }
+    match /admin/{adminId} {
+      allow read, write: if request.auth != null && request.auth.token.admin == true; // Ensure only authenticated users can access the admin panel
+    }
+  }
+}

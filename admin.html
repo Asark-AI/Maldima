@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel - Smart Attendance</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <div class="container">
+    <h2>Admin Panel</h2>
+
+    <div class="card">
+      <input type="email" id="adminEmail" placeholder="Admin Email" class="input" />
+      <input type="password" id="adminPass" placeholder="Password" class="input" />
+      <button onclick="loginAdmin()" class="btn">Login</button>
+    </div>
+
+    <div id="adminSection" style="display:none;">
+      
+      <div class="card">
+        <h3>Class Mode</h3>
+        <button onclick="setClassMode('online')" class="btn">Online</button>
+        <button onclick="setClassMode('face_to_face')" class="btn">Face-to-Face</button>
+        <p id="modeStatus" class="status-text"></p>
+      </div>
+
+      <div class="card">
+        <h3>Send OTP</h3>
+        <button onclick="sendOtpToStudents()" class="btn">Send OTP</button>
+        <p id="otpStatus" class="status-text"></p>
+      </div>
+
+      <div class="card">
+        <h3>Register Student</h3>
+        <input type="text" id="studentName" placeholder="Student Name" class="input" />
+        <input type="email" id="studentEmail" placeholder="Student Email" class="input" />
+        <div class="scan-buttons">
+          <button onclick="triggerScan('rfid')" class="btn small-btn">Scan RFID</button>
+          <button onclick="triggerScan('fingerprint')" class="btn small-btn">Scan Fingerprint</button>
+        </div>
+        <button onclick="saveStudent()" class="btn">Save Student</button>
+        <p id="registrationStatus" class="status-text"></p>
+      </div>
+
+      <div class="card">
+        <h3>Face-to-Face Attendance</h3>
+        <button onclick="startAttendance()" class="btn">Start Marking Attendance</button>
+        <div id="attendanceList" class="attendance-list"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-database.js"></script>
+
+  <!-- Custom JS files -->
+  <script src="js/firebaseConfig.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/adminPanel.js"></script>
+  <script src="js/otpSystem.js"></script>
+  <script src="js/registration.js"></script>
+  <script src="js/attendanceLogger.js"></script>
+  <script src="js/emailService.js"></script>
+</body>
+</html>
